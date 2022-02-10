@@ -1,12 +1,26 @@
 import "./App.css";
 import { useState } from "react";
+import Intro from "./components/Intro";
 import QuestionList from "./components/QuestionList";
 
 function App() {
   // eslint-disable-next-line
+  const [newGame, setNewGame] = useState(false);
   const [quizQuestions, setQuizQuestions] = useState(tempData);
 
-  return <QuestionList quizQuestions={quizQuestions} />;
+  function startGame() {
+    setNewGame(!newGame);
+  }
+
+  return (
+    <main className="container">
+      {newGame ? (
+        <QuestionList quizQuestions={quizQuestions} startGame={startGame} />
+      ) : (
+        <Intro startGame={startGame} />
+      )}
+    </main>
+  );
 }
 
 const tempData = [

@@ -2,11 +2,11 @@ import { React, useState } from "react";
 // import { nanoid } from "nanoid";
 import Question from "./Question";
 
-export default function QuestionList({ quizQuestions }) {
+export default function QuestionList({ quizQuestions, startGame }) {
   const [userData, setuserData] = useState({});
   const [score, setScore] = useState(0);
-  const [formEdits, setFormEdits] = useState(true);
-  const [gameOver, setGameOver] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   let question = quizQuestions.map((question) => {
     return (
@@ -16,6 +16,8 @@ export default function QuestionList({ quizQuestions }) {
         question={question}
         handleChange={handleChange}
         userData={userData}
+        isDisabled={isDisabled}
+        startGame={startGame}
       />
     );
   });
@@ -32,15 +34,6 @@ export default function QuestionList({ quizQuestions }) {
     });
   }
 
-  console.log(userData);
-
-  function onFormSubmit(e) {
-    e.preventDefault();
-    setFormEdits((formEdits) => !formEdits);
-  }
-
-  console.log(formEdits);
-
   // validate the users inputs compared to correct answers and increase score
   function validateAnswers() {
     // for each quiz question, check if the selected answer is actually the correct answer & if yes, increase score
@@ -51,24 +44,25 @@ export default function QuestionList({ quizQuestions }) {
       }
     });
 
-    setGameOver((prevGameOver) => !prevGameOver);
+    setIsGameOver(!isGameOver);
+    setIsDisabled(!isDisabled);
   }
-  console.log(gameOver);
 
   return (
-    <main className="container">
-      <form className="quiz-form" onSubmit={onFormSubmit}>
-        {question}
-        <div className="buttons-container">
-          <button className="btn btn-validate" onClick={validateAnswers}>
-            Check answers
+    <div>
+      <div className="quiz-form">{question}</div>
+      {isGameOver === false ? (
+        <button className="btn btn-validate" onClick={validateAnswers}>
+          Check answers
+        </button>
+      ) : (
+        <div className="score-message">
+          <h3>{`You have scored ${score}/5`}</h3>
+          <button className="btn btn-play" onClick={startGame}>
+            Play again
           </button>
         </div>
-      </form>
-      <div className="score-message">
-        <h3>{score}</h3>
-        <button>Play again</button>
-      </div>
-    </main>
+      )}
+    </div>
   );
 }
