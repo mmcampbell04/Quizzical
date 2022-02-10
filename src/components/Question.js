@@ -1,6 +1,6 @@
 import { React } from "react";
 
-export default function Question({ question, handleChange }) {
+export default function Question({ question, handleChange, userData }) {
   let answers = question.choices.map((choice, index) => {
     return (
       <div className="answer" key={index}>
@@ -10,6 +10,7 @@ export default function Question({ question, handleChange }) {
           className="quiz-answers"
           name={question.question}
           value={choice}
+          checked={userData[question.question] === choice}
           onChange={handleChange}
         />
         <label htmlFor={`option-${choice}`}>{choice}</label>

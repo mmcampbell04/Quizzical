@@ -23,14 +23,12 @@ const tempData = [
     question: "What is hello in french?",
     answer: "Bonjour",
     choices: ["hola", "nein", "eh?", "Bonjour"],
-    selected: "",
   },
   {
     id: 3,
     question: "question 3",
     answer: "bingo",
-    choices: ["bing", "lol", "never", "dunno pal"],
-    selected: "",
+    choices: ["bingo", "lol", "never", "dunno pal"],
   },
 
   {
@@ -38,7 +36,6 @@ const tempData = [
     question: "question 4?",
     answer: "answer456",
     choices: ["anser123", "answer456", "answer898?", "answer976"],
-    selected: "",
   },
 ];
 
