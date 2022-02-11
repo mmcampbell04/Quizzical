@@ -17,7 +17,6 @@ export default function QuestionList({ quizQuestions, startGame }) {
         handleChange={handleChange}
         userData={userData}
         isDisabled={isDisabled}
-        startGame={startGame}
       />
     );
   });
@@ -34,6 +33,8 @@ export default function QuestionList({ quizQuestions, startGame }) {
     });
   }
 
+  console.log(userData);
+
   // validate the users inputs compared to correct answers and increase score
   function validateAnswers() {
     // for each quiz question, check if the selected answer is actually the correct answer & if yes, increase score
@@ -49,7 +50,7 @@ export default function QuestionList({ quizQuestions, startGame }) {
   }
 
   return (
-    <div>
+    <div className="content">
       <div className="quiz-form">{question}</div>
       {isGameOver === false ? (
         <button className="btn btn-validate" onClick={validateAnswers}>
