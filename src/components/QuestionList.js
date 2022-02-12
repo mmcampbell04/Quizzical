@@ -2,7 +2,7 @@ import { React, useState } from "react";
 // import { nanoid } from "nanoid";
 import Question from "./Question";
 
-export default function QuestionList({ quizQuestions, startGame }) {
+export default function QuestionList({ quizQuestions, resetGame }) {
   const [userData, setuserData] = useState({});
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -17,6 +17,7 @@ export default function QuestionList({ quizQuestions, startGame }) {
         handleChange={handleChange}
         userData={userData}
         isDisabled={isDisabled}
+        isGameOver={isGameOver}
       />
     );
   });
@@ -33,16 +34,16 @@ export default function QuestionList({ quizQuestions, startGame }) {
     });
   }
 
-  console.log(userData);
-
   // validate the users inputs compared to correct answers and increase score
   function validateAnswers() {
     // for each quiz question, check if the selected answer is actually the correct answer & if yes, increase score
     quizQuestions.forEach((question) => {
-      const userAnswer = userData[question.question];
-      if (userAnswer === question.answer) {
+      const userAnswer = userData[question.id];
+      if (userAnswer === question.correctAnswer) {
         setScore((prevScore) => prevScore + 1);
       }
+      console.log(userAnswer);
+      console.log(question.correctAnswer);
     });
 
     setIsGameOver(!isGameOver);
@@ -51,15 +52,15 @@ export default function QuestionList({ quizQuestions, startGame }) {
 
   return (
     <div className="content">
-      <div className="quiz-form">{question}</div>
+      {question}
       {isGameOver === false ? (
         <button className="btn btn-validate" onClick={validateAnswers}>
           Check answers
         </button>
       ) : (
         <div className="score-message">
-          <h3>{`You have scored ${score}/5`}</h3>
-          <button className="btn btn-play" onClick={startGame}>
+          <h3>{`You have scored ${score}/${quizQuestions.length}`}</h3>
+          <button className="btn btn-play" onClick={resetGame}>
             Play again
           </button>
         </div>
