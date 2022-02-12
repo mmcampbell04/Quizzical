@@ -1,11 +1,22 @@
-#Quizzical
+# Quizzical
 
-A Small Quiz app - the 4th Solo Project from Scrimba's free Intro to React Course
+A Quiz app - the 4th Solo Project from Scrimba's free Intro to React Course
 
 The app uses the Open [Trivia Database](https://opentdb.com/).
 
-Design as per Scrimba's instructions though the goal is to add a few extra features to test my React understanding.
+Tweaked the Scrimba design slightly with a gradient background rather than those "blobs" - not a fan.
+
+### Original Design from Scrimba
 
 ![This is an image](./Quiz-design.png)
 
-This is still a WIP (as of Feb 2022!)
+### Features
+
+- highlight on users selected answers
+- visible indication whether answer is right or wrong (green vs red)
+- total score at end of game
+
+### Extra Features
+
+- Customise API call so user can choose question category, difficulty & number of questions (in progress...)
+-
