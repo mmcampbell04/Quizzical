@@ -42,8 +42,6 @@ export default function QuestionList({ quizQuestions, resetGame }) {
       if (userAnswer === question.correctAnswer) {
         setScore((prevScore) => prevScore + 1);
       }
-      console.log(userAnswer);
-      console.log(question.correctAnswer);
     });
 
     setIsGameOver(!isGameOver);
@@ -60,9 +58,12 @@ export default function QuestionList({ quizQuestions, resetGame }) {
       ) : (
         <div className="score-message">
           <h3>{`You have scored ${score}/${quizQuestions.length}`}</h3>
-          <button className="btn btn-play" onClick={resetGame}>
-            Play again
-          </button>
+
+          {quizQuestions.length > 1 && (
+            <button className="btn btn-play" onClick={resetGame}>
+              Play again
+            </button>
+          )}
         </div>
       )}
     </div>

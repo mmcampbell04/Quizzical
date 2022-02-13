@@ -1,5 +1,4 @@
 import { React } from "react";
-
 export default function Question({
   question,
   handleChange,
@@ -11,10 +10,7 @@ export default function Question({
     return (
       <div className="answer" key={index}>
         <label
-          className={`${
-            // is the game over?
-            // if yes and the input is the correct ansewr set it to green
-            // if yes & the user answer is not the corerct answer set it to red
+          className={`label ${
             isGameOver
               ? choice === question.correctAnswer
                 ? "label-right"
@@ -30,7 +26,6 @@ export default function Question({
           <input
             id={`option-${choice}`}
             type="radio"
-            className="quiz-answers"
             name={question.id}
             value={choice}
             answer={question.answer}
@@ -54,6 +49,3 @@ export default function Question({
     </div>
   );
 }
-
-// if the game is over - the correct answer is green
-// if the game is over & the user answer is not the correct answer, it is red
