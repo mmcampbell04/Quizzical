@@ -52,18 +52,17 @@ export default function QuestionList({ quizQuestions, resetGame }) {
     <div className="content">
       {question}
       {isGameOver === false ? (
-        <button className="btn btn-validate" onClick={validateAnswers}>
-          Check answers
-        </button>
+        <div className="button-container">
+          <button className="btn btn-validate" onClick={validateAnswers}>
+            Check answers
+          </button>
+        </div>
       ) : (
         <div className="score-message">
           <h3>{`You have scored ${score}/${quizQuestions.length}`}</h3>
-
-          {quizQuestions.length > 1 && (
-            <button className="btn btn-play" onClick={resetGame}>
-              Play again
-            </button>
-          )}
+          <button className="btn btn-play" onClick={resetGame}>
+            Play again
+          </button>
         </div>
       )}
     </div>
