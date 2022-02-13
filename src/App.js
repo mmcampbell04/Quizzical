@@ -6,18 +6,38 @@ import QuestionList from "./components/QuestionList";
 function App() {
   const [newGame, setNewGame] = useState(false);
   const [quizQuestions, setQuizQuestions] = useState([]);
+  // get categories from api
+  const [categories, setCategories] = useState([]);
+  // get user picks for api call
+  const [userSelections, setUserSelections] = useState({
+    category: "",
+    difficulty: "",
+    amount: 5,
+  });
 
-  function startGame() {
-    setNewGame(!newGame);
-  }
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setUserSelections((prevUserSelections) => {
+      return {
+        ...prevUserSelections,
+        [name]: value,
+      };
+    });
+  };
 
-  function resetGame() {
-    startGame();
-    fetchQuizData();
-  }
+  useEffect(() => {
+    fetch("https://opentdb.com/api_category.php")
+      .then((res) => res.json())
+      .then((result) => {
+        setCategories(result.trivia_categories);
+      });
+  }, []);
 
-  function fetchQuizData() {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+  function startGame(e) {
+    e.preventDefault();
+    fetch(
+      `https://opentdb.com/api.php?amount=${userSelections.amount}&category=${userSelections.category}&difficulty=${userSelections.difficulty}&type=multiple`
+    )
       .then((res) => res.json())
       .then((result) => {
         setQuizQuestions(
@@ -33,50 +53,31 @@ function App() {
           })
         );
       });
+    setNewGame(!newGame);
   }
 
-  useEffect(() => {
-    fetchQuizData();
-  }, []);
+  function resetGame() {
+    setNewGame(!newGame);
+  }
 
   return (
-    <main className="container">
+    <main
+      className={`container ${
+        quizQuestions.length <= 5 ? "small-container" : ""
+      }`}
+    >
       {newGame ? (
         <QuestionList quizQuestions={quizQuestions} resetGame={resetGame} />
       ) : (
-        <Intro startGame={startGame} />
+        <Intro
+          startGame={startGame}
+          categories={categories}
+          userSelections={userSelections}
+          handleFormChange={handleFormChange}
+        />
       )}
     </main>
   );
 }
-
-// const tempData = [
-//   {
-//     id: 1,
-//     question: "What is 2+2?",
-//     answer: "4",
-//     wrongAnswers: ["2", "6", "3"],
-//   },
-
-//   {
-//     id: 2,
-//     question: "What is hello in french?",
-//     answer: "Bonjour",
-//     wrongAnswers: ["hola", "nein", "eh?"],
-//   },
-//   {
-//     id: 3,
-//     question: "question 3",
-//     answer: "bingo",
-//     wrongAnswers: ["lol", "never", "dunno pal"],
-//   },
-
-//   {
-//     id: 4,
-//     question: "question 4?",
-//     answer: "answer456",
-//     wrongAnswers: ["anser123", "answer898?", "answer976"],
-//   },
-// ];
 
 export default App;
