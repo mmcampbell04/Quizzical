@@ -35,6 +35,7 @@ function App() {
 
   function startGame(e) {
     e.preventDefault();
+    setNewGame(!newGame);
     fetch(
       `https://opentdb.com/api.php?amount=${userSelections.amount}&category=${userSelections.category}&difficulty=${userSelections.difficulty}&type=multiple`
     )
@@ -52,8 +53,10 @@ function App() {
             };
           })
         );
+      })
+      .catch((error) => {
+        alert(error);
       });
-    setNewGame(!newGame);
   }
 
   function resetGame() {
