@@ -18,5 +18,6 @@ Tweaked the Scrimba design slightly with a gradient background rather than those
 
 ### Extra Features
 
-- Customise API call so user can choose question category, difficulty & number of questions (in progress...)
--
+- Dropdowns for user to select the category, difficulty & number of questions
+
+Live preview: ()
