@@ -40,13 +40,14 @@ export default function Intro({
           <select
             name="difficulty"
             className="input-intro"
+            value={userSelections.difficulty}
             id="difficulity"
             onChange={handleFormChange}
           >
-            <option>Choose difficulty</option>
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Harc">Hard</option>
+            <option value="">Choose difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
           </select>
         </div>
 
@@ -56,14 +57,14 @@ export default function Intro({
           <input
             type="number"
             id="question-number"
-            className="input-intro"
+            className="input-intro-number"
             name="amount"
             onChange={handleFormChange}
             value={userSelections.amount}
           ></input>
           <p className="smallprint">Max 50 questions!</p>
         </div>
-        <div className="form-button">
+        <div className="button-container">
           <button type="button" className="btn btn-start" onClick={startGame}>
             Start Quiz
           </button>
