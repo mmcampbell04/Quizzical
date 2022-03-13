@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 // import { nanoid } from "nanoid";
 import Question from "./Question";
+import { BallTriangle } from "react-loader-spinner";
 
 export default function QuestionList({ quizQuestions, resetGame }) {
   const [userData, setuserData] = useState({});
@@ -50,12 +51,27 @@ export default function QuestionList({ quizQuestions, resetGame }) {
 
   return (
     <div className="content">
-      {question}
+      {/* if quizdata has returned show the questions, otherwise show a loading spinnner */}
+      {quizQuestions.length > 0 ? (
+        question
+      ) : (
+        <BallTriangle
+          heigth="100"
+          width="100"
+          color="grey"
+          ariaLabel="loading-indicator"
+          className="loader"
+        />
+      )}
       {isGameOver === false ? (
         <div className="button-container">
-          <button className="btn btn-validate" onClick={validateAnswers}>
-            Check answers
-          </button>
+          {quizQuestions.length > 0 ? (
+            <button className="btn btn-validate" onClick={validateAnswers}>
+              Check answers
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         <div className="score-message">
