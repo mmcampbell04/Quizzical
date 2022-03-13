@@ -20,4 +20,4 @@ Tweaked the Scrimba design slightly with a gradient background rather than those
 
 - Dropdowns for user to select the category, difficulty & number of questions
 
-Live preview: ()
+Live preview here (https://mmcampbell04.github.io/Quizzical/)
