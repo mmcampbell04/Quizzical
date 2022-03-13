@@ -12,6 +12,7 @@ body {
 }
 
 #root {
+  min-height: 100vh;
   display: grid;
   grid-template-columns: minmax(1em, 1fr) minmax(0px, 60em) minmax(1em, 1fr);
   place-items: center;
