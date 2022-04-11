@@ -1,7 +1,8 @@
 .container {
   width: 100%;
   margin-block: 2rem;
-  background: whitesmoke;
+  background: white;
+  border: 1px solid whitesmoke;
   border-radius: 20px;
   padding: 1em;
   grid-column: 2 / -2;
@@ -30,7 +31,7 @@
 }
 
 .btn {
-  background: hsl(39, 100%, 50%);
+  background: #a2d729;
   font-weight: bolder;
   font-family: inherit;
   font-size: inherit;
@@ -42,7 +43,7 @@
 
 .btn:hover,
 .btn:focus {
-  background: hsl(39, 100%, 60%);
+  background: #a2d729;
 }
 
 /* intro */
@@ -70,7 +71,7 @@ h1,
 }
 
 .label-intro {
-  font-weight: bolder;
+  font-weight: 700;
 }
 
 select,
@@ -162,7 +163,7 @@ input[type="radio"] {
 }
 
 .selected {
-  background: #d6dbf5;
+  background: #fa824c;
   border: none;
 }
 
