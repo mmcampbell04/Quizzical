@@ -10,6 +10,10 @@ Tweaked the Scrimba design slightly with a gradient background rather than those
 
 ![This is an image](./Quiz-design.png)
 
+### Links
+
+- Live Site URL: [https://mmcampbell04.github.io/Quizzical/](https://mmcampbell04.github.io/Quizzical/)
+
 ### Features
 
 - highlight on users selected answers
@@ -19,5 +23,8 @@ Tweaked the Scrimba design slightly with a gradient background rather than those
 ### Extra Features
 
 - Dropdowns for user to select the category, difficulty & number of questions
+- Changes to colour palette/design
 
-Live preview here (https://mmcampbell04.github.io/Quizzical/)
+### Additional planned features
+
+- Validation of number of questions - anything larger than 50 currently returns 50. Create functionality to prevent this from happening and user having instead to choose quiz length
